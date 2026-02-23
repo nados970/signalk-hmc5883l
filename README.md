@@ -27,5 +27,5 @@ node calibrate-hmc5883l.js <bus> <adresse>
 # Raspberry Pi, adresse 30 : node calibrate-hmc5883l.js 1 30
 
 #Note:
-Sur mon module, j'ai des axes inversés. La formule de calcul peut donc etre differente.
-Je regarde pour apporter une modification afin de pouvoir la changer.
+Sur mon module, j'ai des axes inversés. 
+Des options ont été ajoutés.
