@@ -1,0 +1,12 @@
+{
+  "name": "signalk-hmc5883l",
+  "version": "0.0.1",
+  "description": "HMC5883L compass for Signal K",
+  "main": "index.js",
+  "keywords": ["signalk-node-server-plugin"],
+  "author": "Nados",
+  "license": "MIT",
+  "dependencies": {
+    "i2c-bus": "^5.2.3"
+  }
+}
