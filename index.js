@@ -16,6 +16,21 @@ module.exports = function(app) {
       offsetX: { type: 'number', title: 'Offset X', default: 0 },
       offsetY: { type: 'number', title: 'Offset Y', default: 0 },
       offsetZ: { type: 'number', title: 'Offset Z', default: 0 },
+      invertHeading: {
+        type: 'boolean',
+        title: 'Invert heading (180°)',
+        default: false
+      },
+      reverseRotation: {
+        type: 'boolean',
+        title: 'Reverse rotation (East/West swapped)',
+        default: false
+      },
+      headingOffsetRad: {
+        type: 'number',
+        title: 'Heading angular offset (radians)',
+        default: 0
+      },
       debug: { type: 'boolean', title: 'Enable debug logging', default: false }
     }
   };
@@ -35,8 +50,24 @@ module.exports = function(app) {
       let z = buffer.readInt16BE(2) - (optionsGlobal.offsetZ || 0);
       let y = buffer.readInt16BE(4) - (optionsGlobal.offsetY || 0);
 
-      // Calcul heading corrigé
+      // Calcul heading
+      // Calcul brut
       let heading = Math.atan2(y, -x) + Math.PI / 2;
+
+      // Inversion 180°
+      if (optionsGlobal.invertHeading) {
+        heading += Math.PI;
+      }
+
+      // Inversion du sens de rotation
+      if (optionsGlobal.reverseRotation) {
+        heading = (2 * Math.PI) - heading;
+      }
+
+      // Offset angulaire utilisateur
+      heading += (optionsGlobal.headingOffsetRad || 0);
+
+      // Normalisation 0 → 2π
       heading = heading % (2 * Math.PI);
       if (heading < 0) heading += 2 * Math.PI;
 
