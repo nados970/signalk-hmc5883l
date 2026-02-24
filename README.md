@@ -15,6 +15,11 @@ La calibration se fait avec un script séparé.
 cd ~/.signalk/node_modules/signalk-hmc5883l
 npm install
 
+# Error: Could not locate the bindings file
+Si vous obtenez une erreur dans signal,
+  ouvrez une console
+  allez dans le repertoire de signalk (cd ~/.signalk)
+  npm rebuild
 
 ## Calibration
 # Lancer sur bus 0 et adresse 0x1E(30 en decimal) par défaut
